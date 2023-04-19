@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AllUsersComponent } from './components/all-users/all-users.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -11,7 +12,8 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
     UserDetailsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class UsersModule { }
