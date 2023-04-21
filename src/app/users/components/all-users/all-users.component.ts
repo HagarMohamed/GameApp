@@ -18,13 +18,13 @@ export class AllUsersComponent implements OnInit {
   }
 
 
-  
+
 
   getUserData(){
 
     this.service.getAllUsers().subscribe(responce => {
 
-      this.AllUsers = responce;
+      return this.AllUsers = responce;
     })
   }
 
