@@ -11,7 +11,11 @@ export class AllgamesComponent implements OnInit {
   constructor(private servise:AllGameServiceService) { }
 
   AllGames:any = [];
-  AllCategories:any = []
+  AllFilterdData:any = [];
+  loading:boolean = false;
+  AllCategories:any = [];
+  error:boolean = false;
+  allError:any = [];
 
   ngOnInit(): void {
 
@@ -22,20 +26,61 @@ export class AllgamesComponent implements OnInit {
 
 
   getDataGames(){
-    this.servise.getAllGames().subscribe(responce =>{
-      console.log(responce);
-      this.AllGames = responce;
-    })
+    this.loading = true;
+    setTimeout(() => {
+      
+      this.servise.getAllGames().subscribe(responce =>{
+        console.log(responce);
+        this.AllGames = responce;
+        this.AllFilterdData = responce;
+        this.loading = false;
+      }, error => {
+        this.error = true;
+        this.allError.push(error.message);
+        this.loading = false;
+      })
+      
+    }, 3000);
   }
+  
+
 
   getAllCategory(){
-    this.servise.getCategory().subscribe(responce =>{
-      this.AllCategories = responce;
-      this.AllCategories.unshift({id:0,category:"All Category"})
-    })
+
+    this.loading = true;
+    setTimeout(() => {
+      this.servise.getCategory().subscribe(responce =>{
+        this.AllCategories = responce;
+        this.AllCategories.unshift({id:0,category:"All Category"})
+        this.loading = false;
+      },error =>{
+        this.error = true;
+        this.allError.push(error.message);
+        this.loading = false;
+      })
+    
+    }, 3000);
   }
 
-  openDetails(){
+  filterCategory(event:any){
+   console.log(event.target.value);
 
+   if(event.target.value == "All Category"){
+
+
+    return this.AllGames
+   }
+   else{
+
+    let Result = this.AllGames.filter((element:any) =>
+    element.game_category === event.target.value
+
+   )
+   console.log(Result)
+   this.AllFilterdData = Result;
+   }
+    
   }
+
+  
 }

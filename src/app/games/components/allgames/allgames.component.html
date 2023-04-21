@@ -1,5 +1,5 @@
 
-    <div class="row mt-5 d-flex justify-content-between">
+    <div class="row pt-5 d-flex justify-content-between">
       <div class="col-md-4">
         <form class=" input-group w-auto">
           <input
@@ -17,36 +17,28 @@
 
       <div class="col-md-4">
 
+        <app-select [data]="AllCategories" (selectedValue)="filterCategory($event)"></app-select>
 
-        <div class="dropdown">
-
-          <select class="w-auto">
-            <option *ngFor="let category of AllCategories">{{category.category}}</option>
-            
-          </select>
-        </div>
       </div>
     </div>
 
+   
 
+<div class="box mx-3">
+  <div class="row" *ngIf="!loading && !error">
+    <div class="col-md-3 col-sm-12" *ngFor="let game of AllFilterdData">
 
-<div class="box mt-5">
-  <div class="row">
-    <div class="col-md-3 col-sm-12" *ngFor="let game of AllGames">
-
-      <div class="card mt-5" onclick="openDtails(id)">
-        <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
-          <img [src]="game.imageUrl" class="img-fluid" style="width: 300px;"/>
-          <a href="#!">
-            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-          </a>
-        </div>
-        <div class="card-body">
-          <h5 class="card-title">{{game.game_name}}</h5>
-          <p class="card-text">{{game.game_category}}</p>
-        </div>
-      </div>
+      <app-game [data]="game"></app-game>
 
     </div>
+    </div>
+    <div class="text-center w-100" *ngIf="loading">
+      <app-spinner></app-spinner>
+    </div>
+    <div class="text-center w-100" *ngIf="error">
+      <div *ngFor="let error of allError">
+
+      <app-error [error]="error"></app-error>
+      </div>
     </div>
 </div>

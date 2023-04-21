@@ -1,0 +1,18 @@
+
+
+
+      <div class="card mt-5" (click)="openDetails(data)">
+        <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
+          <img [src]="data.imageUrl" class="img-fluid" style="width: 300px;"/>
+          <a href="#!">
+            <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+          </a>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{data.game_name}}</h5>
+          <p class="card-text">{{data.game_category}}</p>
+        </div>
+      </div>
+
+   
+    

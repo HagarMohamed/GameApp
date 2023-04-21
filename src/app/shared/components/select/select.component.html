@@ -1,0 +1,7 @@
+<div class="dropdown">
+
+  <select class="w-auto" (change)="filterCategory($event)">
+    <option [value]="category.category" *ngFor="let category of data">{{category.category}}</option>
+    
+  </select>
+</div>
