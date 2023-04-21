@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AllGameServiceService {
-
+game:any = {};
   constructor(private http: HttpClient) {
 
    }
