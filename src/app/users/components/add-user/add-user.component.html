@@ -1,0 +1,38 @@
+<div class="row p-5">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+
+<form #f="ngForm">
+  <!-- Name input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form4Example1">Name:</label>
+    <input name="name" type="text" id="form4Example1" class="form-control" ngModel #name="ngModel"/>
+
+  </div>
+
+  <!-- Email input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form4Example2">Email:</label>
+    <input name="email" type="email" id="form4Example2" class="form-control" ngModel #email="ngModel"/>
+
+  </div>
+
+  <!-- Message input -->
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form4Example3">Address:</label>
+    <textarea name="address" class="form-control" id="form4Example3" ngModel #address="ngModel"></textarea>
+
+  </div>
+
+
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4"
+  (click)="addUser(name.value,email.value,address.value)">Create Customer
+  </button>
+</form>
+
+
+  </div>
+  <div class="col-md-2"></div>
+</div>

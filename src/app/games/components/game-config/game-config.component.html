@@ -1,0 +1,67 @@
+
+
+
+<div class="row pt-5 d-flex justify-content-between">
+  <div class="col-md-4">
+    <div class="input-group">
+      <input type="search" class="form-control rounded" ngModel #searchInput="ngModel" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+      <button type="button" class="btn btn-primary" (click)="search(searchInput.value)">search</button>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+
+    <app-select [data]="AllCategories" (selectedValue)="filterCategory($event)"></app-select>
+
+
+    <input type="date" (change)="filterByDate($event)" class="form-control rounded mt-2" ngModel #filterSearchInput="ngModel" placeholder="date" aria-label="Search" aria-describedby="search-addon" />
+
+    <!-- <mat-form-field  appearance="outline" >
+      <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="filterByDate($event)">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+  </div> -->
+
+</div>
+
+
+
+
+<div class="box mx-3">
+<div class="row" *ngIf="!loading && !error">
+  <table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+      <tr>
+        <th>Game Name</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Config</th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr app-table-game *ngFor="let game of AllFilterdData" [data]="game" 
+      (editValue)="editGame($event)" (deletedValue)="deleteGame($event)">
+
+      </tr>
+       
+    </tbody>
+  </table>
+
+</div>
+<div class="text-center w-100" *ngIf="loading">
+  <app-spinner></app-spinner>
+</div>
+<div class="text-center w-100" *ngIf="error">
+  <div *ngFor="let error of allError">
+
+  <app-error [error]="error"></app-error>
+  </div>
+</div>
+</div>
+
+
+
+<button class="btn btn-info"  routerLink="/addgame">+</button>

@@ -1,14 +1,19 @@
+
+
 <table class="table align-middle mb-0 bg-white mt-5">
   <thead class="bg-light">
     <tr>
       <th>Name</th>
       <th>Email</th>
       <th>Address</th>
+      <th>Config</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of AllUsers">
-      <app-user [data]="user"></app-user>
+    <tr *ngFor="let user of AllUsers" app-user [data]="user" (deletedValue)="deletedItem($event)">
     </tr>
   </tbody>
 </table>
+
+
+<button class="btn btn-info"  routerLink="/adduser">+</button>

@@ -6,6 +6,8 @@ import { Injectable } from '@angular/core';
 })
 export class AllGameServiceService {
 game:any = {};
+allGame:any = [];
+
   constructor(private http: HttpClient) {
 
    }
@@ -16,5 +18,9 @@ game:any = {};
 
    getCategory(){
     return this.http.get('../../../assets/game_category.json')
+   }
+
+   addGame(user:any){
+    this.allGame.push(user);
    }
 }

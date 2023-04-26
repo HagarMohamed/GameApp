@@ -4,6 +4,10 @@ import { AllUsersComponent } from './components/all-users/all-users.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { SharedModule } from '../shared/shared.module';
 import { UserComponent } from './components/user/user.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,11 +15,15 @@ import { UserComponent } from './components/user/user.component';
   declarations: [
     AllUsersComponent,
     UserDetailsComponent,
-    UserComponent
+    UserComponent,
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule,
+    FormsModule,
   ]
 })
 export class UsersModule { }

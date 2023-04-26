@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AllUserService } from '../../services/all-user.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-all-users',
@@ -14,18 +15,29 @@ export class AllUsersComponent implements OnInit {
 
   ngOnInit(): void {
 
-   this.getUserData(); 
+   this.getUserData();
   }
 
 
 
 
   getUserData(){
+    if(this.service.allUser.length > 0)
+       this.AllUsers = this.service.allUser
+    else{
+      this.service.getAllUsers().subscribe(responce => {
+        this.AllUsers = responce;
+        this.service.allUser = responce
 
-    this.service.getAllUsers().subscribe(responce => {
+      })
+    }
 
-      return this.AllUsers = responce;
-    })
+    console.log(this.service.allUser)
+  }
+
+  deletedItem(user:any){
+     this.service.removeItem(user.id);
+     this.AllUsers = this.service.allUser
   }
 
 }

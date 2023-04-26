@@ -6,7 +6,14 @@ import { AppComponent } from './app.component';
 import { UsersModule } from './users/users.module';
 import { GamesModule } from './games/games.module';
 import { SharedModule } from './shared/shared.module';
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +22,17 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    // FontAwesomeModule,
+    RouterModule,
     UsersModule,
     GamesModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule,
+    FormsModule
 
   ],
   providers: [],

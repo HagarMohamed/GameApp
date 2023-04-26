@@ -1,0 +1,25 @@
+
+  <td>
+    <div class="d-flex align-items-center">
+      <img
+          [src]="data.imageUrl"
+          alt=""
+          style="width: 45px; height: 45px"
+          class="rounded-circle"
+          />
+      <div class="ms-3">
+        <p class="fw-bold mb-1">{{data.game_name}}</p>
+      </div>
+    </div>
+  </td>
+  <td>
+    <p class="fw-normal mb-1">{{data.game_category}}</p>
+  </td>
+  <td>
+    {{data.creation_date}}
+  </td>
+  <td>
+    <button type="button" class="btn btn-primary" (click)="editGame(data)">Edit</button>
+    &nbsp;
+    <button type="button" class="btn btn-danger" (click)="deleteGame(data)">Delete</button>
+  </td>

@@ -1,13 +1,35 @@
 
-<div class="card mt-5">
-  <div class="bg-image hover-overlay" mdbRipple rippleColor="light">
-    <img [src]="game.imageUrl" class="img-fluid" />
-    <a href="#!">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+
+    <div class="card mt-5">
+      <div class="row g-0">
+        <div class="">
+          <img
+          [src]="game.imageUrl"
+            alt=""
+            class="img-fluid rounded-start w-100"
+          />
+        </div>
+        <div class="">
+          <div class="card-body">
+            <h5 class="card-title"><span>Name:</span> {{game.game_name}}</h5>
+            <p class="card-text">
+              <span>Categgory:</span>
+              {{game.game_category}}
+            </p>
+            <div class="card-text">
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque enim eos laudantium eum culpa repudiandae consequuntur voluptatibus eaque excepturi facere.</p>
+
+              <small class="text-muted"><span>Date:</span> {{game.creation_date}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
-  <div class="card-body">
-    <h5 class="card-title">{{game.game_name}}</h5>
-    <p class="card-text">{{game.game_category}}</p>
-  </div>
+  <div class="col-md-2"></div>
 </div>

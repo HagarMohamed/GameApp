@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { AllGameServiceService } from '../../services/all-game-service.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-allgames',
-  templateUrl: './allgames.component.html',
-  styleUrls: ['./allgames.component.css']
+  selector: 'app-game-config',
+  templateUrl: './game-config.component.html',
+  styleUrls: ['./game-config.component.css']
 })
-export class AllgamesComponent implements OnInit {
+export class GameConfigComponent implements OnInit {
 
-  constructor(private servise:AllGameServiceService) { }
+  constructor(private servise:AllGameServiceService, private router:Router) { }
 
   AllGames:any = [];
   AllFilterdData:any = [];
@@ -16,6 +17,7 @@ export class AllgamesComponent implements OnInit {
   AllCategories:any = [];
   error:boolean = false;
   allError:any = [];
+
 
   ngOnInit(): void {
 
@@ -34,29 +36,23 @@ export class AllgamesComponent implements OnInit {
         this.AllFilterdData = this.servise.allGame;
         this.loading = false;
       } else{
-      this.servise.getAllGames().subscribe(responce =>{
-        console.log(responce);
-        this.AllGames = responce;
-        this.AllFilterdData = responce;
-        this.loading = false;
-      }, error => {
-        this.error = true;
-        this.allError.push(error.message);
-        this.loading = false;
-      })
-    }
+        this.servise.getAllGames().subscribe(responce =>{
+          console.log(responce);
+
+          this.servise.allGame = responce
+
+          this.AllGames = responce;
+          this.AllFilterdData = responce;
+          this.loading = false;
+        }, error => {
+          this.error = true;
+          this.allError.push(error.message);
+          this.loading = false;
+        })
+      }
+
 
     }, 3000);
-  }
-
-  filterByDate(event:any){
-
-    console.log(event.target.value)
-
-    let Result = this.AllGames.filter((element:any) =>
-      element.creation_date == event.target.value
-    )
-    this.AllFilterdData = Result;
   }
 
 
@@ -101,5 +97,28 @@ export class AllgamesComponent implements OnInit {
 
   }
 
+
+  filterByDate(event:any){
+
+    console.log(event.target.value)
+
+    let Result = this.AllGames.filter((element:any) =>
+      element.creation_date == event.target.value
+    )
+    this.AllFilterdData = Result;
+  }
+
+  editGame(game:any){
+
+    this.router.navigate(['/editgame']);
+    this.servise.game = game;
+
+  }
+
+  deleteGame(game:any){
+    let index = this.AllFilterdData.indexOf(game);
+    this.AllFilterdData.splice(index,1);
+
+  }
 
 }

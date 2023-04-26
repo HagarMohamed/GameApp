@@ -1,28 +1,29 @@
 
     <div class="row pt-5 d-flex justify-content-between">
       <div class="col-md-4">
-        <form class=" input-group w-auto">
-          <input
-            type="search"
-            class="form-control rounded"
-            placeholder="Search"
-            aria-label="Search"
-            aria-describedby="search-addon"
-          />
-          <span class="input-group-text border-0" id="search-addon">
-            <button class="btn btn-parimary">Search</button>
-          </span>
-        </form>
+        <div class="input-group">
+          <input type="search" class="form-control rounded" ngModel #searchInput="ngModel" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+          <button type="button" class="btn btn-primary" (click)="search(searchInput.value)">search</button>
+        </div>
       </div>
 
       <div class="col-md-4">
 
         <app-select [data]="AllCategories" (selectedValue)="filterCategory($event)"></app-select>
 
+        <input type="date" (change)="filterByDate($event)" class="form-control rounded mt-2" ngModel #filterSearchInput="ngModel" placeholder="date" aria-label="Search" aria-describedby="search-addon" />
+
+        <!-- <mat-form-field  appearance="outline" >
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker ></mat-datepicker>
+        </mat-form-field> -->
       </div>
+
     </div>
 
-   
+
+
 
 <div class="box mx-3">
   <div class="row" *ngIf="!loading && !error">
