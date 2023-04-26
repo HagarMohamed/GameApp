@@ -91,7 +91,7 @@ export class GameConfigComponent implements OnInit {
 
 
     let Result = this.AllGames.filter((element:any) =>
-      element.game_name.includes(search)
+      element.game_name.toLowerCase().includes(search.toLowerCase())
     )
      this.AllFilterdData = Result;
 
